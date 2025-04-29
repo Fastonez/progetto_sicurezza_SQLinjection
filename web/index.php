@@ -10,28 +10,6 @@ if (!file_exists('database.db')) {
     $db = new SQLite3($percorso_db);
 }
 
-// $username = $_GET['username'] ?? '';
-// $password = $_GET['password'] ?? '';
-// // echo "Username: " . htmlspecialchars($username);
-
-// $query = "SELECT * FROM utenti WHERE username = '$username' AND password = '$password'";
-// $result = $db->query($query);
-// echo "Query: " . htmlspecialchars($query);
-
-// // $query = $_GET['q'] ?? '';
-// // echo "<pre>Query eseguita:\n$query\n</pre>";
-// // $db->exec($query);
-
-
-// if ($row = $result->fetchArray()) {
-    
-//     echo "<h3>Login effettuato!</h3>";
-//     echo "<p>Benvenuto " . htmlspecialchars($row['username']) . "</p>";
-// } else {
-//     echo "<h3>Credenziali errate!</h3>";
-// }
-
-
 // Verifica se è stato inviato il form di login
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && (isset($_GET['username']) || isset($_GET['password']))) {
     $username = $_GET['username'] ?? '';
