@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Vulnerabile | Demo SQLi</title>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --danger: #f72548;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --border: #dee2e6;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h2 {
+            font-weight: 600;
+        }
+        
+        .form-container {
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #3a56d4;
+        }
+        
+        .note {
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .examples {
+            margin-top: 30px;
+            background-color: #f8d7da;
+            border-left: 4px solid var(--danger);
+            border-radius: 4px;
+            padding: 15px;
+        }
+        
+        .examples h3 {
+            color: var(--danger);
+            margin-bottom: 10px;
+        }
+        
+        .examples ul {
+            padding-left: 20px;
+        }
+        
+        .examples li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        code {
+            background-color: #e9ecef;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        
+        .warning {
+            color: var(--danger);
+            font-weight: 500;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Login Vulnerabile</h2>
+            <p>Dimostrazione SQL Injection</p>
+        </div>
+        
+        <div class="form-container">
+            <form method="GET" action="index.php">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Inserisci username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Inserisci password" required>
+                </div>
+                
+                <button type="submit" class="btn">Accedi</button>
+            </form>
+            
+            <div class="note">
+                <strong>Nota:</strong> Questa pagina è intenzionalmente vulnerabile a SQL Injection per scopi didattici.
+            </div>
+            
+            <div class="examples">
+                <h3>Esempi di attacco SQLi:</h3>
+                <ul>
+                    <li>Bypass login: <code>' or 1=1 or '</code> come username</li>
+                    <li>Estrarre dati: <code>' UNION SELECT 1, 'hacker', 'pass', 'admin' --</code></li>
+                    <li>Modificare dati: <code>'; UPDATE utenti SET ruolo='admin' WHERE username='mario'; -- </code></li>
+                    <li>Eliminare tabelle: <code>'; DROP TABLE utenti --</code></li>
+                </ul>
+                <p class="warning">ATTENZIONE: Solo per ambienti controllati!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

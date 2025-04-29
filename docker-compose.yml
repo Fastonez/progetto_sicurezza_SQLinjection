@@ -1,0 +1,10 @@
+version: "3"
+services:
+  web:
+    image: php:7.4-apache
+    container_name: php-web-sqlite
+    restart: always
+    volumes:
+      - ./web:/var/www/html/
+    ports:
+      - "8080:80"
