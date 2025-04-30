@@ -1,4 +1,3 @@
-
 <?php
 
 // Se il DB non esiste, creiamo la tabella
@@ -28,12 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && (isset($_GET['username']) || isset($
         $result = $db->querySingle($query, true);
         
         if ($result) {
-            echo "<div style='background:#d4edda;color:#155724;padding:15px;border-radius:5px;margin-bottom:20px;'>";
-            echo "<strong>Accesso riuscito!</strong> Benvenuto, " . htmlspecialchars($result['username']) . ".";
+            echo "<div style='background-color: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-bottom: 20px;'>";
+            echo "<strong>Accesso riuscito!</strong><br>";
+            echo "Benvenuto, <strong>" . htmlspecialchars($result['username']) . "</strong>.<br>";
+            echo "Ruolo: <em><strong>" . htmlspecialchars($result['ruolo']) . "</strong></em>";
             echo "</div>";
         } else {
-            // echo "<div style='background:#f8d7da;color:#721c24;padding:15px;border-radius:5px;margin-bottom:20px;'>";
-            // echo "<strong>Accesso fallito.</strong> Username o password errati.";
+            echo "<div style='background:#f8d7da;color:#721c24;padding:15px;border-radius:5px;margin-bottom:20px;'>";
+            echo "<strong>Accesso fallito.</strong> Username o password errati.";
             echo "</div>";
             
             // Se la SELECT fallisce, prova a eseguire come comando generico (per UPDATE, DROP, ecc.)
